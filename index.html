@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trisenta Karya Mandiri — Strategic Technology Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #050D1A;
+  --bg-surface: #081526;
+  --bg-card: rgba(8,21,38,0.9);
+  --accent: #00C8FF;
+  --accent2: #00FFD0;
+  --accent3: #1562FF;
+  --text: #E4F0FB;
+  --muted: #6080A0;
+  --dim: #2A4060;
+  --border: rgba(0,200,255,0.12);
+  --border-hi: rgba(0,200,255,0.38);
+  --glow: 0 0 32px rgba(0,200,255,0.28);
+  --hd: 'Exo 2', sans-serif;
+  --bd: 'Nunito Sans', sans-serif;
+  --ease: all 0.32s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--text);font-family:var(--bd);line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* UTILITY */
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.section{padding:108px 0}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--hd);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.tag::before{content:'';width:22px;height:2px;background:var(--accent);flex-shrink:0}
+.h2{font-family:var(--hd);font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.08;letter-spacing:-0.02em}
+.accent{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.rvl{opacity:0;transform:translateX(-44px);transition:opacity .75s ease,transform .75s ease}
+.rvr{opacity:0;transform:translateX(44px);transition:opacity .75s ease,transform .75s ease}
+.rv.on,.rvl.on,.rvr.on{opacity:1;transform:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:22px 0;transition:var(--ease)}
+.nav.stuck{background:rgba(5,13,26,.95);backdrop-filter:blur(20px);padding:14px 0;border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{display:inline-flex;align-items:center;gap:11px}
+.logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--accent3));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--hd);font-weight:900;font-size:17px;color:#050D1A;flex-shrink:0}
+.logo-name{font-family:var(--hd);font-weight:800;font-size:17px;line-height:1.1}
+.logo-sub{font-size:9px;font-weight:500;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;display:block}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);letter-spacing:.3px;transition:var(--ease);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 22px;border:1px solid var(--accent);border-radius:4px;color:var(--accent)!important;font-weight:700!important;letter-spacing:.8px;font-size:12px!important;transition:var(--ease)!important}
+.nav-cta:hover{background:var(--accent)!important;color:#050D1A!important;box-shadow:var(--glow)!important}
+.nav-cta::after{display:none!important}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+#cvs{position:absolute;inset:0;z-index:0}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 75% 55% at 68% 48%,rgba(0,100,200,.13) 0%,transparent 65%),radial-gradient(ellipse 45% 35% at 18% 75%,rgba(0,200,255,.07) 0%,transparent 55%);z-index:1;pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:780px}
+.hero-pill{display:inline-flex;align-items:center;gap:9px;padding:6px 18px;background:rgba(0,200,255,.07);border:1px solid var(--border);border-radius:100px;font-family:var(--hd);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:34px;animation:fadeDown .8s ease .15s both}
+.pill-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 2.2s ease infinite}
+.hero-title{font-family:var(--hd);font-size:clamp(3rem,6.5vw,5.8rem);font-weight:900;line-height:.98;letter-spacing:-.025em;margin-bottom:26px;animation:fadeUp .8s ease .35s both}
+.hero-title span{display:block}
+.hero-title .hl{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:17px;color:var(--muted);max-width:510px;line-height:1.85;margin-bottom:46px;animation:fadeUp .8s ease .55s both}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s ease .75s both}
+.btn{padding:16px 36px;border-radius:4px;font-family:var(--hd);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:var(--ease);display:inline-block}
+.btn-p{background:linear-gradient(135deg,var(--accent),var(--accent3));border:none;color:#050D1A;position:relative;overflow:hidden}
+.btn-p::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);opacity:0;transition:opacity .3s}
+.btn-p:hover{box-shadow:0 0 44px rgba(0,200,255,.55);transform:translateY(-2px)}
+.btn-p:hover::after{opacity:1}
+.btn-s{background:transparent;border:1px solid rgba(0,200,255,.36);color:var(--text)}
+.btn-s:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,200,255,.06)}
+.scroll-hint{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);animation:fadeUp 1s ease 1.4s both}
+.scroll-bar{width:1px;height:52px;background:linear-gradient(to bottom,var(--accent),transparent);animation:shrink 2.2s ease infinite}
+
+/* STATS */
+.stats{background:linear-gradient(to right,var(--bg-surface),rgba(8,21,38,.5));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 0}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{text-align:center;padding:36px 16px;position:relative}
+.stat:not(:last-child)::after{content:'';position:absolute;top:20%;right:0;height:60%;width:1px;background:var(--border)}
+.stat-ico{font-size:28px;display:block;margin-bottom:14px;opacity:.75}
+.stat-num{font-family:var(--hd);font-size:clamp(3rem,5vw,4.4rem);font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.stat-lbl{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* ABOUT */
+.about{background:var(--bg-deep)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:76px;align-items:start}
+.vision-box{padding:48px;border:1px solid var(--border);border-radius:2px;background:var(--bg-card);backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.vision-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.vision-quote{font-family:var(--hd);font-size:clamp(1.35rem,2.5vw,1.85rem);font-weight:700;line-height:1.42;color:var(--text);margin-top:22px}
+.vision-quote em{font-style:normal;color:var(--accent)}
+.story-year{font-family:var(--hd);font-size:4.2rem;font-weight:900;color:var(--dim);line-height:1;margin-bottom:14px;display:block}
+.story-p{font-size:15.5px;color:var(--muted);line-height:1.9;margin-bottom:18px}
+
+/* SOLUTIONS */
+.solutions{background:var(--bg-surface)}
+.sol-head{text-align:center;margin-bottom:60px}
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.sol-tail{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:800px;margin:22px auto 0}
+.sol-card{padding:34px 30px;border:1px solid var(--border);background:var(--bg-card);border-radius:2px;transition:var(--ease);cursor:default;position:relative;overflow:hidden}
+.sol-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,200,255,.05),transparent);opacity:0;transition:opacity .3s}
+.sol-card:hover{border-color:var(--border-hi);transform:translateY(-5px);box-shadow:0 22px 60px rgba(0,0,0,.5),var(--glow)}
+.sol-card:hover::after{opacity:1}
+.sol-ico{width:50px;height:50px;background:rgba(0,200,255,.09);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:22px;transition:var(--ease)}
+.sol-card:hover .sol-ico{background:rgba(0,200,255,.18);border-color:var(--accent);box-shadow:0 0 22px rgba(0,200,255,.28)}
+.sol-title{font-family:var(--hd);font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px}
+.sol-desc{font-size:13.5px;color:var(--muted);line-height:1.72}
+.sol-arr{margin-top:18px;color:var(--accent);font-size:18px;opacity:0;transform:translateX(-8px);transition:var(--ease)}
+.sol-card:hover .sol-arr{opacity:1;transform:none}
+
+/* MISSION */
+.mission{background:var(--bg-deep)}
+.miss-head{text-align:center;margin-bottom:60px}
+.miss-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.miss-card{text-align:center;padding:40px 22px;border:1px solid var(--border);background:var(--bg-card);border-radius:2px;transition:var(--ease);position:relative}
+.miss-card:hover{border-color:var(--border-hi);box-shadow:var(--glow)}
+.miss-n{position:absolute;top:14px;right:18px;font-family:var(--hd);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--dim)}
+.miss-ico{width:62px;height:62px;margin:0 auto 18px;background:rgba(0,200,255,.07);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px}
+.miss-title{font-family:var(--hd);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:10px}
+.miss-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* PORTFOLIO */
+.portfolio{background:var(--bg-surface)}
+.port-head{margin-bottom:60px}
+.port-grid{display:grid;grid-template-columns:1fr 1fr .68fr;gap:22px}
+.port-card{border:1px solid var(--border);background:var(--bg-card);border-radius:2px;padding:38px 34px;transition:var(--ease);position:relative;overflow:hidden}
+.port-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.port-card:hover{border-color:var(--border-hi);transform:translateY(-4px);box-shadow:0 22px 60px rgba(0,0,0,.5)}
+.port-card:hover::before{transform:scaleX(1)}
+.port-client{font-family:var(--hd);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.port-project{font-family:var(--hd);font-size:19px;font-weight:800;color:var(--text);margin-bottom:14px;line-height:1.3}
+.port-desc{font-size:13.5px;color:var(--muted);line-height:1.72;margin-bottom:22px}
+.port-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.port-list li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.port-list li::before{content:'→';color:var(--accent);flex-shrink:0}
+.port-more{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,rgba(0,200,255,.05),rgba(21,98,255,.05))}
+.port-num{font-family:var(--hd);font-size:5.2rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.port-mlbl{font-size:13px;color:var(--muted);margin-top:6px}
+.port-others{margin-top:20px;font-size:12px;color:var(--dim);line-height:1.75}
+
+/* CLIENTS */
+.clients{background:var(--bg-deep);padding:84px 0}
+.cli-head{text-align:center;margin-bottom:48px}
+.cli-track-wrap{overflow:hidden;position:relative}
+.cli-track-wrap::before,.cli-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.cli-track-wrap::before{left:0;background:linear-gradient(to right,var(--bg-deep),transparent)}
+.cli-track-wrap::after{right:0;background:linear-gradient(to left,var(--bg-deep),transparent)}
+.cli-track{display:flex;gap:16px;animation:scroll 28s linear infinite;width:max-content}
+.cli-track:hover{animation-play-state:paused}
+.cli-badge{padding:15px 30px;border:1px solid var(--border);background:var(--bg-card);border-radius:4px;font-family:var(--hd);font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.8px;white-space:nowrap;transition:var(--ease);flex-shrink:0}
+.cli-badge:hover{border-color:var(--accent);color:var(--text);box-shadow:var(--glow)}
+
+/* CONTACT */
+.contact{background:var(--bg-surface)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.18fr;gap:80px;align-items:start}
+.contact-intro{font-size:15.5px;color:var(--muted);line-height:1.85;margin:22px 0 38px}
+.info-list{display:flex;flex-direction:column;gap:18px}
+.info-item{display:flex;align-items:flex-start;gap:15px}
+.info-ico{width:44px;height:44px;background:rgba(0,200,255,.07);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.info-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:2.2px;color:var(--dim);font-weight:700;margin-bottom:3px}
+.info-val{font-size:14.5px;color:var(--text);font-weight:500}
+.form-box{padding:46px;border:1px solid var(--border);background:var(--bg-card);border-radius:2px;position:relative}
+.form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.form-hd{font-family:var(--hd);font-size:21px;font-weight:800;color:var(--text);margin-bottom:6px}
+.form-sub{font-size:13px;color:var(--muted);margin-bottom:28px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fg{margin-bottom:22px}
+.flbl{display:block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.fi{width:100%;padding:13px 16px;background:rgba(8,21,38,.9);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:var(--bd);font-size:14.5px;transition:var(--ease);outline:none}
+.fi:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,200,255,.1)}
+.fi::placeholder{color:var(--dim)}
+.fi-sel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236080A0' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.fi-sel option{background:#081526}
+textarea.fi{resize:vertical;min-height:116px}
+.btn-full{width:100%;padding:17px;font-size:14px;text-align:center}
+
+/* FOOTER */
+footer{background:#030A14;border-top:1px solid var(--border);padding:64px 0 30px}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.ft-brand p{font-size:13.5px;color:var(--muted);margin-top:14px;line-height:1.8}
+.ft-h{font-family:var(--hd);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text);margin-bottom:18px}
+.ft-ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ft-ul a{font-size:13.5px;color:var(--muted);transition:var(--ease)}
+.ft-ul a:hover{color:var(--accent)}
+.ft-bot{border-top:1px solid var(--border);padding-top:26px;display:flex;justify-content:space-between;align-items:center}
+.ft-copy{font-size:12.5px;color:var(--dim)}
+.ft-copy b{color:var(--accent);font-weight:600}
+
+/* KEYFRAMES */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.75)}}
+@keyframes shrink{0%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(.25);transform-origin:bottom}100%{transform:scaleY(1);transform-origin:top}}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .sol-grid{grid-template-columns:repeat(2,1fr)}
+  .sol-tail{grid-template-columns:1fr;max-width:390px}
+  .port-grid{grid-template-columns:1fr}
+  .port-more{padding:40px;min-height:220px}
+  .ft-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .section{padding:76px 0}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:42px}
+  .miss-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-row{grid-template-columns:1fr}
+  .stat:not(:last-child)::after{display:none}
+  .nav-links{display:none}
+  .ft-top{grid-template-columns:1fr;gap:30px}
+  .ft-bot{flex-direction:column;gap:12px;text-align:center}
+}
+@media(max-width:520px){
+  .miss-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  .btn{text-align:center}
+  .frow{grid-template-columns:1fr}
+  .form-box{padding:28px 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">T</div>
+        <div>
+          <div class="logo-name">TRISENTA</div>
+          <span class="logo-sub">Karya Mandiri</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="cvs"></canvas>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-pill">
+        <span class="pill-dot"></span>
+        Strategic Technology Partner · Jakarta, Indonesia
+      </div>
+      <h1 class="hero-title">
+        <span>Let's Build</span>
+        <span>Our Future</span>
+        <span class="hl">Through Technology</span>
+      </h1>
+      <p class="hero-sub">Partner with us to accelerate innovation, optimize operations, and create measurable business impact through intelligent technology solutions.</p>
+      <div class="hero-btns">
+        <a href="#solutions" class="btn btn-p">Explore Solutions</a>
+        <a href="#contact" class="btn btn-s">Contact Us &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat rv">
+        <span class="stat-ico">🏆</span>
+        <div class="stat-num" data-to="5">0</div>
+        <div class="stat-lbl">+ Years Experience</div>
+      </div>
+      <div class="stat rv" style="transition-delay:.1s">
+        <span class="stat-ico">🤝</span>
+        <div class="stat-num" data-to="20">0</div>
+        <div class="stat-lbl">+ Satisfied Clients</div>
+      </div>
+      <div class="stat rv" style="transition-delay:.2s">
+        <span class="stat-ico">🚀</span>
+        <div class="stat-num" data-to="50">0</div>
+        <div class="stat-lbl">+ Impactful Projects</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="rvl">
+        <div class="vision-box">
+          <span class="tag">Our Vision</span>
+          <p class="vision-quote">To be a trusted strategic technology partner that enables organizations to achieve <em>sustainable growth, operational excellence, and digital transformation.</em></p>
+        </div>
+      </div>
+      <div class="rvr">
+        <span class="tag">Our Story</span>
+        <span class="story-year">2021</span>
+        <p class="story-p">Founded on the conviction that technology should accelerate business growth, Trisenta Karya Mandiri enables organizations to leverage technology strategically — generating measurable outcomes and sustainable competitive advantages.</p>
+        <p class="story-p">From our headquarters in Jakarta, we've grown to serve clients across investment management, electronics, healthcare, hospitality, and beyond — always with the same commitment to impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="section solutions" id="solutions">
+  <div class="container">
+    <div class="sol-head rv">
+      <span class="tag">What We Do</span>
+      <h2 class="h2">Transform Your Business<br>with <span class="accent">Our Solutions</span></h2>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card rv">
+        <div class="sol-ico">🤖</div>
+        <div class="sol-title">Intelligent Process Automation (RPA)</div>
+        <p class="sol-desc">Automate repetitive workflows and boost operational efficiency with intelligent robotic process automation tailored to your systems.</p>
+        <div class="sol-arr">→</div>
+      </div>
+      <div class="sol-card rv" style="transition-delay:.09s">
+        <div class="sol-ico">📊</div>
+        <div class="sol-title">Real-Time Dashboard & Business Intelligence</div>
+        <p class="sol-desc">Turn raw data into actionable insights with live dashboards and analytics that power smarter, faster decisions.</p>
+        <div class="sol-arr">→</div>
+      </div>
+      <div class="sol-card rv" style="transition-delay:.18s">
+        <div class="sol-ico">🌐</div>
+        <div class="sol-title">Enterprise Web & Digital Solutions</div>
+        <p class="sol-desc">Build robust digital platforms, enterprise portals, and web applications that scale with your business needs.</p>
+        <div class="sol-arr">→</div>
+      </div>
+    </div>
+    <div class="sol-tail">
+      <div class="sol-card rv" style="transition-delay:.27s">
+        <div class="sol-ico">🔐</div>
+        <div class="sol-title">Cybersecurity & Information Security Analysis</div>
+        <p class="sol-desc">Protect your digital assets with comprehensive security assessments, threat analysis, and proactive risk management.</p>
+        <div class="sol-arr">→</div>
+      </div>
+      <div class="sol-card rv" style="transition-delay:.36s">
+        <div class="sol-ico">🧠</div>
+        <div class="sol-title">Agentic Artificial Intelligence</div>
+        <p class="sol-desc">Deploy autonomous AI agents that reason, plan, and execute complex tasks — from data workflows to intelligent assistants.</p>
+        <div class="sol-arr">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="section mission">
+  <div class="container">
+    <div class="miss-head rv">
+      <span class="tag">Our Mission</span>
+      <h2 class="h2">The Pillars That <span class="accent">Drive Us</span></h2>
+    </div>
+    <div class="miss-grid">
+      <div class="miss-card rv">
+        <span class="miss-n">01</span>
+        <div class="miss-ico">⚙️</div>
+        <div class="miss-title">Alignment</div>
+        <p class="miss-desc">Align technology investments with business strategy to maximize ROI and long-term value creation.</p>
+      </div>
+      <div class="miss-card rv" style="transition-delay:.1s">
+        <span class="miss-n">02</span>
+        <div class="miss-ico">📈</div>
+        <div class="miss-title">Impact</div>
+        <p class="miss-desc">Deliver measurable, quantifiable outcomes that make a real, visible difference to your operations.</p>
+      </div>
+      <div class="miss-card rv" style="transition-delay:.2s">
+        <span class="miss-n">03</span>
+        <div class="miss-ico">🤝</div>
+        <div class="miss-title">Partnership</div>
+        <p class="miss-desc">Build trusted, lasting partnerships grounded in transparency, integrity, and mutual success.</p>
+      </div>
+      <div class="miss-card rv" style="transition-delay:.3s">
+        <span class="miss-n">04</span>
+        <div class="miss-ico">✨</div>
+        <div class="miss-title">Excellence</div>
+        <p class="miss-desc">Optimize operational performance through continuous improvement and best-in-class delivery standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section portfolio" id="portfolio">
+  <div class="container">
+    <div class="port-head rv">
+      <span class="tag">Our Work</span>
+      <h2 class="h2">Real Impact for <span class="accent">Real Clients</span></h2>
+    </div>
+    <div class="port-grid">
+      <div class="port-card rv">
+        <div class="port-client">PNM Investment Management</div>
+        <div class="port-project">Intelligent Excel Reporting Automation</div>
+        <p class="port-desc">Automated data extraction and dashboard refresh processes to deliver faster, more reliable Excel-based reporting.</p>
+        <ul class="port-list">
+          <li>Reduced report preparation time by up to 90%</li>
+          <li>Dashboard refresh cycles shortened from hours to minutes</li>
+          <li>Eliminated repetitive manual data entry errors entirely</li>
+        </ul>
+      </div>
+      <div class="port-card rv" style="transition-delay:.14s">
+        <div class="port-client">LG Electronics Indonesia</div>
+        <div class="port-project">Enterprise Data Integration Automation</div>
+        <p class="port-desc">Integrated business data across multiple systems automatically, enabling real-time visibility across the organization.</p>
+        <ul class="port-list">
+          <li>Automated synchronization across multiple business systems</li>
+          <li>Manual consolidation effort reduced by up to 90%</li>
+          <li>Data availability improved to near real-time access</li>
+        </ul>
+      </div>
+      <div class="port-card port-more rv" style="transition-delay:.28s">
+        <div class="port-num">50+</div>
+        <div class="port-mlbl">Projects Delivered</div>
+        <p class="port-others">Hotel Performance Centers &middot; AI Learning Platforms &middot; Investment Dashboards &middot; Enterprise Data Hubs &middot; and more</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" id="clients">
+  <div class="container">
+    <div class="cli-head rv">
+      <span class="tag">Trusted By</span>
+      <h2 class="h2">Our <span class="accent">Clients</span></h2>
+    </div>
+  </div>
+  <div class="cli-track-wrap">
+    <div class="cli-track" id="track">
+      <div class="cli-badge">🏢&nbsp; LG Electronics Indonesia</div>
+      <div class="cli-badge">💼&nbsp; PNM Investment Management</div>
+      <div class="cli-badge">🏗&nbsp; Dofla Jaya Properti</div>
+      <div class="cli-badge">🏭&nbsp; Allure Industries</div>
+      <div class="cli-badge">📚&nbsp; EF Education</div>
+      <div class="cli-badge">🏥&nbsp; Tzu Chi Hospital</div>
+      <!-- duplicated for seamless loop -->
+      <div class="cli-badge">🏢&nbsp; LG Electronics Indonesia</div>
+      <div class="cli-badge">💼&nbsp; PNM Investment Management</div>
+      <div class="cli-badge">🏗&nbsp; Dofla Jaya Properti</div>
+      <div class="cli-badge">🏭&nbsp; Allure Industries</div>
+      <div class="cli-badge">📚&nbsp; EF Education</div>
+      <div class="cli-badge">🏥&nbsp; Tzu Chi Hospital</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="rvl">
+        <span class="tag">Get In Touch</span>
+        <h2 class="h2">Let's Start Your <span class="accent">Digital Journey</span></h2>
+        <p class="contact-intro">Ready to transform your business? Reach out and let's explore how we can help you achieve your goals through strategic technology.</p>
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-ico">✉️</div>
+            <div>
+              <div class="info-lbl">Email</div>
+              <div class="info-val">marketing@trisenta.co.id</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-ico">📞</div>
+            <div>
+              <div class="info-lbl">Phone</div>
+              <div class="info-val">+62 897-7394-796</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-ico">🌐</div>
+            <div>
+              <div class="info-lbl">Website</div>
+              <div class="info-val">www.trisenta.co.id</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-ico">📍</div>
+            <div>
+              <div class="info-lbl">Address</div>
+              <div class="info-val">Jl. Pejompongan Raya No. 16, Bendungan Hilir<br>Jakarta Pusat 10210, Indonesia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rvr">
+        <div class="form-box">
+          <div class="form-hd">Send a Message</div>
+          <div class="form-sub">We typically respond within 24 hours.</div>
+          <div class="frow">
+            <div class="fg">
+              <label class="flbl">First Name</label>
+              <input class="fi" type="text" placeholder="John">
+            </div>
+            <div class="fg">
+              <label class="flbl">Last Name</label>
+              <input class="fi" type="text" placeholder="Doe">
+            </div>
+          </div>
+          <div class="fg">
+            <label class="flbl">Email Address</label>
+            <input class="fi" type="email" placeholder="john@company.com">
+          </div>
+          <div class="fg">
+            <label class="flbl">Service Interest</label>
+            <select class="fi fi-sel">
+              <option value="" disabled selected>Select a service…</option>
+              <option>Intelligent Process Automation (RPA)</option>
+              <option>Real-Time Dashboard &amp; Business Intelligence</option>
+              <option>Enterprise Web &amp; Digital Solutions</option>
+              <option>Cybersecurity &amp; Information Security Analysis</option>
+              <option>Agentic Artificial Intelligence</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="flbl">Message</label>
+            <textarea class="fi" placeholder="Tell us about your project or challenge…"></textarea>
+          </div>
+          <button class="btn btn-p btn-full">Send Message &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">T</div>
+          <div>
+            <div class="logo-name">TRISENTA</div>
+            <span class="logo-sub">Karya Mandiri</span>
+          </div>
+        </a>
+        <p>A trusted strategic technology partner enabling organizations to achieve sustainable growth, operational excellence, and digital transformation.</p>
+      </div>
+      <div>
+        <div class="ft-h">Solutions</div>
+        <ul class="ft-ul">
+          <li><a href="#solutions">Process Automation</a></li>
+          <li><a href="#solutions">Business Intelligence</a></li>
+          <li><a href="#solutions">Web Solutions</a></li>
+          <li><a href="#solutions">Cybersecurity</a></li>
+          <li><a href="#solutions">Agentic AI</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-h">Company</div>
+        <ul class="ft-ul">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-h">Contact</div>
+        <ul class="ft-ul">
+          <li><a href="mailto:marketing@trisenta.co.id">marketing@trisenta.co.id</a></li>
+          <li><a href="tel:+628977394796">+62 897-7394-796</a></li>
+          <li><a href="https://trisenta.co.id" target="_blank">www.trisenta.co.id</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <div class="ft-copy">&copy; 2025 <b>Trisenta Karya Mandiri</b>. All rights reserved.</div>
+      <div class="ft-copy">Jakarta, Indonesia 🇮🇩</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── PARTICLE CANVAS ── */
+const cvs = document.getElementById('cvs');
+const ctx = cvs.getContext('2d');
+let pts = [], raf;
+function resize(){
+  cvs.width = window.innerWidth;
+  cvs.height = window.innerHeight;
+}
+class Pt {
+  constructor(){this.reset()}
+  reset(){
+    this.x = Math.random()*cvs.width;
+    this.y = Math.random()*cvs.height;
+    this.vx = (Math.random()-.5)*.38;
+    this.vy = (Math.random()-.5)*.38;
+    this.r = Math.random()*1.4+.4;
+    this.a = Math.random()*.45+.08;
+  }
+  tick(){
+    this.x+=this.vx; this.y+=this.vy;
+    if(this.x<0||this.x>cvs.width) this.vx*=-1;
+    if(this.y<0||this.y>cvs.height) this.vy*=-1;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,200,255,${this.a})`;
+    ctx.fill();
+  }
+}
+function initPts(){
+  const n = Math.min(75, Math.floor(cvs.width*cvs.height/14000));
+  pts = Array.from({length:n},()=>new Pt());
+}
+function lines(){
+  const d=148;
+  for(let i=0;i<pts.length;i++){
+    for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<d){
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x,pts[i].y);
+        ctx.lineTo(pts[j].x,pts[j].y);
+        ctx.strokeStyle=`rgba(0,200,255,${(1-dist/d)*.1})`;
+        ctx.lineWidth=.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+function frame(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  pts.forEach(p=>{p.tick();p.draw()});
+  lines();
+  raf=requestAnimationFrame(frame);
+}
+resize(); initPts(); frame();
+window.addEventListener('resize',()=>{
+  cancelAnimationFrame(raf);
+  resize(); initPts(); frame();
+});
+
+/* ── NAVBAR SCROLL ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('stuck',window.scrollY>50);
+},{ passive:true });
+
+/* ── SCROLL REVEAL ── */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('on');
+  });
+},{threshold:.1,rootMargin:'0px 0px -48px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>obs.observe(el));
+
+/* ── COUNTER ANIMATION ── */
+const cobs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, to=+el.dataset.to;
+    let start=null;
+    const run=ts=>{
+      if(!start) start=ts;
+      const p=Math.min((ts-start)/1900,1);
+      const ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(ease*to);
+      if(p<1) requestAnimationFrame(run);
+    };
+    requestAnimationFrame(run);
+    cobs.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-to]').forEach(el=>cobs.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
